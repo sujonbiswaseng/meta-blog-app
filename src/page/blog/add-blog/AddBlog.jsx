@@ -27,7 +27,7 @@ const AddBlog = () => {
         try {
          const toastId = toast.loading("Adding blog...");
     
-         const response= await axios.post(`https://meta-blog-backend-jade.vercel.app/blogs/add-post`,BlogData)
+         const response= await axios.post(`https://meta-blog-backend-yxtt.vercel.app/blogs/add-post`,BlogData)
           console.log(response,'respns')
 
           // Check the received data after post

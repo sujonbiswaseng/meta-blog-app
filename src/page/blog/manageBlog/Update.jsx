@@ -32,7 +32,7 @@ const Update = () => {
         try {
             const toastId = toast.loading("Updating blog...");
             try {
-              const response = await axios.put(`https://meta-blog-backend-6yio.vercel.app/blogs/${id}`, BlogData);
+              const response = await axios.put(`https://meta-blog-backend-yxtt.vercel.app/blogs/${id}`, BlogData);
               if (response && response.data) {
                 toast.dismiss(toastId);
                 toast.success("Blog data updated successfully!");
