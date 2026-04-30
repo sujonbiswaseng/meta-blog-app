@@ -7,11 +7,11 @@ const ManageBlogs = () => {
     console.log(blogs,'bos')
     const navigate = useNavigate()
      useEffect(()=>{
-            fetch('https://meta-blog-backend-jade.vercel.app/blogs').then((res)=>res.json()).then((data)=>setblogs(data.blogs)).catch((error)=>console.error('error featching blog data :' + error))
+            fetch('https://meta-blog-backend-1mqx.vercel.app/blogs').then((res)=>res.json()).then((data)=>setblogs(data.blogs)).catch((error)=>console.error('error featching blog data :' + error))
         })
         const hadleblogDelete=async(id)=>{
             try {
-                await axios.delete(`https://meta-blog-backend-jade.vercel.app/blogs/${id}`)
+                await axios.delete(`https://meta-blog-backend-1mqx.vercel.app/blogs/${id}`)
                 setblogs(blogs.filter(blog=>blog.id!==id))
                 alert("blog data delete sucessfully")
                 navigate('/manage-blog')
