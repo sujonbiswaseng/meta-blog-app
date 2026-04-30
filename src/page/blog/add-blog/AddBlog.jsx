@@ -3,16 +3,17 @@ import InputField from './InputField'
 import TextArea from './TextArea'
 import { useForm } from "react-hook-form"
 import axios from 'axios'
+import { toast } from 'react-toastify'
 
 const AddBlog = () => {
       const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors },reset
+    reset
   } = useForm()
 
     const onSubmit = async(data) => {
+
         const BlogData = {
             title:data.title,
             description:data.description,
@@ -22,12 +23,30 @@ const AddBlog = () => {
                 image:data.authorImage
             }
         }
+
         try {
-          const response = await axios.post(`https://meta-blog-backend-1mqx.vercel.app/blogs/add-post`,BlogData)
-          alert("blog add sucessfully")
+         const toastId = toast.loading("Adding blog...");
+    
+         const response= await axios.post(`https://meta-blog-backend-jade.vercel.app/blogs/add-post`,BlogData)
+          console.log(response,'respns')
+
+          // Check the received data after post
+          if (response.data) {
+            toast.dismiss(toastId);
+            toast.success("Blog added successfully!");
+            return
+          } else {
+            toast.dismiss(toastId);
+            toast.error("Blog not added. Please check your data and try again.");
+            return
+          }
+     
+     
+  
           reset()
         } catch (error) {
-          console.log(error.message);
+          console.log(error.message)
+          alert("Failed to add blog. Please check server URL and try again.")
         }
     }
 

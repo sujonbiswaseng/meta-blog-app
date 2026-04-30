@@ -4,6 +4,7 @@ import InputField from '../add-blog/InputField'
 import TextArea from '../add-blog/TextArea'
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router'
+import { toast } from 'react-toastify'
 
 const Update = () => {
 
@@ -29,10 +30,25 @@ const Update = () => {
             console.log(BlogData);
 
         try {
-            const response=await axios.put(`http://localhost:5000/blogs/${id}`,BlogData)
-            alert("blog data update sucessfull")
-            navigate('/')
-            reset()
+            const toastId = toast.loading("Updating blog...");
+            try {
+              const response = await axios.put(`https://meta-blog-backend-jade.vercel.app/blogs/${id}`, BlogData);
+              if (response && response.data) {
+                toast.dismiss(toastId);
+                toast.success("Blog data updated successfully!");
+                navigate('/');
+                reset();
+              } else {
+                toast.dismiss(toastId);
+                toast.error("Blog update failed. Please check your data and try again.");
+              }
+         
+            } catch (error) {
+              toast.dismiss(toastId);
+              toast.error("Failed to update blog. Please try again.");
+              throw error; // Optionally rethrow if you want error handling elsewhere
+            }
+       
 
         } catch (error) {
             console.log(error.message);

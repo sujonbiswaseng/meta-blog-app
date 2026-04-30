@@ -10,7 +10,7 @@ const BlogDetails = () => {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const response=await axios.get(`https://meta-blog-backend-1mqx.vercel.app/blogs/${id}`)
+        const response=await axios.get(`http://localhost:5000/blogs/${id}`)
         setblog(response.data.blog)
         setloading(false)
       } catch (error) {
