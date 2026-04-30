@@ -6,7 +6,7 @@ const BlogList = () => {
     const [blogs,setblogs]=useState([]);
     const [showBlog,setShowBlog] = useState(6)
     useEffect(()=>{
-        fetch('https://meta-blog-backend-yxtt.vercel.app/blogs').then((res)=>res.json()).then((data)=>setblogs(data.blogs)).catch((error)=>console.error('error featching blog data :' + error))
+        fetch('https://meta-blog-backend-jade.vercel.app/blogs').then((res)=>res.json()).then((data)=>setblogs(data.blogs)).catch((error)=>console.error('error featching blog data :' + error))
     },[])
     // filter blog base on title descirpt 
 
